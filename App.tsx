@@ -6,6 +6,8 @@ import LoginScreen from "./src/screens/Auth/LoginScreen";
 import HomeScreen from "./src/screens/Home/HomeScreen";
 import RegisterScreen from "./src/screens/Auth/RegisterScreen";
 
+import "./ReactotronConfig";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -20,7 +22,11 @@ export default function App() {
           component={LoginScreen}
         />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          options={{ headerBackVisible: false, statusBarColor: "" }}
+          name="Home"
+          component={HomeScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

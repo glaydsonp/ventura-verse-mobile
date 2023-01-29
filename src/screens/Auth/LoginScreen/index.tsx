@@ -1,5 +1,5 @@
 import {
-  Button,
+  Alert,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -21,6 +21,8 @@ const LoginScreen = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         navigation.navigate("Home");
+      } else {
+        navigation.navigate("Login");
       }
     });
 
@@ -31,7 +33,7 @@ const LoginScreen = () => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-      console.error(error);
+      Alert.alert(error);
     }
   };
 

@@ -8,15 +8,12 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { auth, firestore } from "../../../../firebaseConfig";
-import { useNavigation } from "@react-navigation/native";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const navigation = useNavigation();
 
   const register = async () => {
     if (!email) {
@@ -41,13 +38,12 @@ const RegisterScreen = () => {
 
     try {
       await auth.createUserWithEmailAndPassword(email, password);
+      const currentUser = auth.currentUser;
 
-      await firestore().collection("Users").add({
+      await firestore().collection("Users").doc(currentUser.uid).set({
         email,
         username,
       });
-
-      navigation.navigate("Login");
     } catch (e) {
       console.error(e);
     }
