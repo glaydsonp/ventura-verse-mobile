@@ -1,4 +1,5 @@
 import {
+  Alert,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -16,23 +17,28 @@ const RegisterScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const register = async () => {
-    if (!email) {
+    if (!username) {
+      Alert.alert("Name field is required");
       return;
     }
 
-    if (!username) {
+    if (!email) {
+      Alert.alert("Email field is required!");
       return;
     }
 
     if (!password) {
+      Alert.alert("Password field is required");
       return;
     }
 
     if (!confirmPassword) {
+      Alert.alert("Confirm password field is required");
       return;
     }
 
     if (password !== confirmPassword) {
+      Alert.alert("Password and confirm password does not match");
       return;
     }
 
@@ -45,7 +51,7 @@ const RegisterScreen = () => {
         username,
       });
     } catch (e) {
-      console.error(e);
+      Alert.alert(e.message);
     }
   };
 

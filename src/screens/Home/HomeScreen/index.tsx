@@ -1,7 +1,6 @@
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { auth, firestore } from "../../../../firebaseConfig";
-import "firebase/firestore";
 
 const HomeScreen = () => {
   const currentUserUID = auth.currentUser.uid;
